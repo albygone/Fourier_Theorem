@@ -2,7 +2,7 @@ canvas {
    display: block;
    margin: 10px auto;
    max-width: 70vw;
-   /* aspect-ratio: auto 1280 / 720; */
+   background-color: white;
 }
 
 #container {

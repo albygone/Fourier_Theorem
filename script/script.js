@@ -88,7 +88,7 @@ function inizializzaCallBack() {
         cambiaVel(document.getElementById("rangeVel").value);
     });
     document.getElementById("btnFull").addEventListener("click", () => {
-        //fullscreen
+        canvas.requestFullscreen();
     });
     document.getElementById("btnFerma").addEventListener("click", toggleFerma);
 }

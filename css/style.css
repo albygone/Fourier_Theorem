@@ -1,0 +1,21 @@
+canvas {
+   display: block;
+   margin: 10px auto;
+   max-width: 70vw;
+   /* aspect-ratio: auto 1280 / 720; */
+}
+
+#container {
+   display: flex;
+}
+
+#controls {
+   padding: 15px;
+}
+
+.controlsContainer {
+   border: 2px solid #ddd;
+   padding: 15px;
+   border-radius: 15px;
+   margin-bottom: 15px;
+}

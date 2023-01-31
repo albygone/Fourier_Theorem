@@ -1,4 +1,4 @@
-import { ondaSin, ondaQua, ondaRis, ondaTri } from "./onda.js";
+import { ondaSin, ondaQua, ondaRis, ondaTri, ondaDen } from "./onda.js";
 
 const visualizzazioni = {
    quadra: true,
@@ -6,12 +6,14 @@ const visualizzazioni = {
    armonicheQua: true,
    risQua: true,
    risTri: true,
+   risDen: true,
 };
 
 const to = Math.PI * 2;
 
 let tick;
 let velocita = 12.5;
+let precisione = 0.002;
 
 let i = 0;
 let ferma = false;
@@ -28,10 +30,10 @@ let ondaRisultanteQua: ondaRis;
 let ondeTri: ondaTri[] = [];
 let ondaRisultanteTri: ondaRis;
 
-cambiaArmonicheQua("5");
-inizializzaOndeQuadre();
+let ondeDen: ondaDen[] = [];
+let ondaRisultanteDen: ondaRis;
 
-cambiaArmonicheTri("5");
+calcolaTutto();
 
 start();
 
@@ -67,12 +69,28 @@ function start() {
             ondaRisultanteTri.color
          );
 
+      if (visualizzazioni.risDen)
+         point(
+            ondaRisultanteDen.punti[i].x,
+            ondaRisultanteDen.punti[i].y,
+            ondaRisultanteDen.color
+         );
+
       i++;
       if (i >= ondeQua[0].punti.length) {
          i = 0;
          clear();
       }
    }, velocita);
+}
+
+function calcolaTutto() {
+   cambiaArmonicheQua("5");
+   inizializzaOndeQuadre();
+
+   cambiaArmonicheTri("5");
+
+   cambiaArmonicheDen("10");
 }
 
 function clear() {
@@ -133,6 +151,16 @@ function inizializzaCallBack() {
       canvas.requestFullscreen();
    });
 
+   document.getElementById("chkRisDen").addEventListener("change", () => {
+      toggle("risDen");
+   });
+
+   document.getElementById("numArmDen").addEventListener("change", () => {
+      cambiaArmonicheDen(
+         (<HTMLInputElement>document.getElementById("numArmDen")).value
+      );
+   });
+
    document.getElementById("btnFerma").addEventListener("click", toggleFerma);
 }
 
@@ -147,7 +175,7 @@ function cambiaArmonicheTri(value: string) {
             100,
             to,
             "#" + Math.floor(Math.random() * 16777215).toString(16),
-            0.005,
+            precisione,
             canvas,
             j
          )
@@ -160,7 +188,7 @@ function cambiaArmonicheTri(value: string) {
       80,
       to,
       "#000000",
-      0.005,
+      precisione,
       canvas,
       ondeTri
    );
@@ -179,7 +207,7 @@ function cambiaArmonicheQua(value: string) {
             100,
             to,
             "#" + Math.floor(Math.random() * 16777215).toString(16),
-            0.005,
+            precisione,
             canvas,
             j
          )
@@ -197,12 +225,44 @@ function cambiaArmonicheQua(value: string) {
       80,
       to,
       "#000000",
-      0.005,
+      precisione,
       canvas,
       ondeQua
    );
 
    ondaRisultanteQua.calcola();
+}
+
+function cambiaArmonicheDen(value: string) {
+   let num = parseInt(value);
+   ondeDen = [];
+
+   for (let i = 1; i <= num; i++) {
+      ondeDen.push(
+         new ondaDen(
+            Math.PI,
+            100,
+            to,
+            "#" + Math.floor(Math.random() * 16777215).toString(16),
+            precisione,
+            canvas,
+            i
+         )
+      );
+      ondeDen[ondeDen.length - 1].calcola();
+   }
+
+   ondaRisultanteDen = new ondaRis(
+      Math.PI,
+      60,
+      to,
+      "#000000",
+      precisione,
+      canvas,
+      ondeDen
+   );
+
+   ondaRisultanteDen.calcola();
 }
 
 function cambiaVel(value: string) {
@@ -216,6 +276,6 @@ function cambiaVel(value: string) {
 }
 
 function inizializzaOndeQuadre() {
-   ondaQuadra = new ondaQua(Math.PI, 80, to, "red", 0.005, canvas);
+   ondaQuadra = new ondaQua(Math.PI, 80, to, "red", precisione, canvas);
    ondaQuadra.calcola();
 }

@@ -36,6 +36,25 @@ export class ondaTri extends ondaInterface {
         }
     }
 }
+export class ondaDen extends ondaInterface {
+    constructor(_frequenza, _ampiezza, _to, _color, _step, _canvas, _n) {
+        super(_frequenza, _ampiezza, _to, _color, _step, _canvas);
+        this.n = _n;
+    }
+    calcola() {
+        const PI2 = Math.PI * 2;
+        this.punti = [];
+        for (let i = 0, j = 0; i < this.to; i += this.step, j++) {
+            this.punti.push({
+                x: i * 200,
+                y: Math.sin((1 / this.periodo) * PI2 * i * this.n) *
+                    (1 / this.n) *
+                    this.ampiezza +
+                    this.canvas.height / 2,
+            });
+        }
+    }
+}
 export class ondaQua extends ondaInterface {
     calcola() {
         const PI2 = Math.PI * 2;

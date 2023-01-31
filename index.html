@@ -45,7 +45,7 @@
                <input type="text" readonly="true" value="Risultante" class="form-control"
                   aria-label="Text input with checkbox">
             </div>
-            <p style="margin-bottom:5px;">Armoniche</p>
+            <p style="margin-bottom:5px;">Numero armoniche</p>
 
             <div class="input-group mb-3">
                <div class="input-group-text">
@@ -61,7 +61,7 @@
             <h2>Onda triangolare</h2>
             <br>
 
-            <p style="margin-bottom:5px;">Armoniche</p>
+            <p style="margin-bottom:5px;">Numero armoniche</p>
 
             <div class="input-group mb-3">
                <div class="input-group-text">
@@ -74,14 +74,31 @@
          </div>
 
          <div class="controlsContainer">
+            <h2>Onda dente di sega</h2>
+            <br>
+
+            <p style="margin-bottom:5px;">Numero armoniche</p>
+
+            <div class="input-group mb-3">
+               <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="checkbox" value="" checked
+                     aria-label="Checkbox for following text input" id="chkRisDen">
+               </div>
+               <input type="num" min="1" value="5" id="numArmDen" class="form-control"
+                  aria-label="Text input with checkbox">
+            </div>
+         </div>
+
+         <div class="controlsContainer">
             <h2>Generale</h2>
             <label for="customRange3" class="form-label">Velocit&agrave;</label>
             <input type="range" class="form-range" min="0" max="25" step="0.5" id="rangeVel">
 
             <button type="button" id="btnFerma" class="btn btn-primary" style="margin-top: 15px;">Play / pausa</button>
             <button type="button" id="btnFull" class="btn btn-primary" style="margin-top: 15px;">Full screen</button>
-
          </div>
+
+
       </div>
       <canvas width="1280" height="720" id="canvasOnde"></canvas>
    </div>

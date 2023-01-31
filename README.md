@@ -1,2 +1,2 @@
-# Fourier_Theorem
-A simple dimostration of the Fourier Theme with the possibility to render Square wave and Triangle wave
+# Fourier Theorem
+A simple Fourier diagram demonstration with the ability to render square wave and triangle wave
